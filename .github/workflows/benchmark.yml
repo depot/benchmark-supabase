@@ -37,7 +37,6 @@ jobs:
       - uses: depot/setup-action@v1
       - uses: depot/build-push-action@v1
         with:
-          token: ${{ secrets.DEPOT_PROJECT_TOKEN }}
           context: ./upstream/studio
           target: production
           platforms: linux/amd64,linux/arm64
