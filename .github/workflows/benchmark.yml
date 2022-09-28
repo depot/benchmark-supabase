@@ -25,6 +25,7 @@ jobs:
         with:
           node-version: 14
           cache: npm
+          cache-dependency-path: upstream/package-lock.json
       - run: npm install
         working-directory: ./upstream
 
@@ -51,6 +52,7 @@ jobs:
         with:
           node-version: 14
           cache: npm
+          cache-dependency-path: upstream/package-lock.json
       - run: npm install
         working-directory: ./upstream
 
