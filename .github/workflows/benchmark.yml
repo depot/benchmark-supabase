@@ -19,20 +19,10 @@ jobs:
         with:
           platforms: amd64,arm64
       - uses: docker/setup-buildx-action@v2
-
-      # Workaround broken package-lock.json file in upstream repo
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 14
-          cache: npm
-          cache-dependency-path: upstream/package-lock.json
-      - run: npm install
-        working-directory: ./upstream
-
       - uses: docker/build-push-action@v2
         with:
-          context: ./upstream
-          file: ./upstream/studio/Dockerfile
+          context: "{{defaultContext}}"
+          file: studio/Dockerfile
           cache-from: type=gha
           cache-to: type=gha,mode=max
           target: production
@@ -46,19 +36,9 @@ jobs:
         with:
           submodules: recursive
       - uses: depot/setup-action@v1
-
-      # Workaround broken package-lock.json file in upstream repo
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 14
-          cache: npm
-          cache-dependency-path: upstream/package-lock.json
-      - run: npm install
-        working-directory: ./upstream
-
       - uses: depot/build-push-action@v1
         with:
-          context: ./upstream
-          file: ./upstream/studio/Dockerfile
+          context: "{{defaultContext}}"
+          file: studio/Dockerfile
           target: production
           platforms: linux/amd64,linux/arm64
