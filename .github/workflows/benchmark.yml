@@ -23,8 +23,6 @@ jobs:
         with:
           context: ./upstream
           file: ./upstream/studio/Dockerfile
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
           target: production
           platforms: linux/amd64,linux/arm64
 
